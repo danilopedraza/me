@@ -56,3 +56,8 @@ main {
     left: 250px;
     margin: 10px 10px;
 }
+
+main img {
+    margin: 50px 50px;
+    width: 500px;
+}
