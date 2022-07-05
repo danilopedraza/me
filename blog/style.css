@@ -15,6 +15,7 @@ a {
     color: black;
 }
 
+/* Inicio de estilos del header */
 header {
     font-size: 1.6rem;
     width: 100%;
@@ -39,7 +40,9 @@ header ul li {
     margin-top: auto;
     margin-bottom: auto;
 }
+/* Final de estilos del header */
 
+/* Inicio de estilos del contenido */
 main {
     width: 100%;
     height: calc(100vh - 50px);
@@ -60,6 +63,7 @@ main .main-content {
 }
 
 main .main-content img {
-    margin: 30px 30px;
-    max-width: 500px;
+    margin: 50px 50px;
+    width: 500px;
 }
+/* Final de estilos del contenido */
