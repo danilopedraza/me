@@ -59,7 +59,18 @@ main .main-content {
     background-color: rgb(211, 207, 207);
 }
 
-main .main-content img {
-    margin: 30px 30px;
-    max-width: 500px;
+main .main-content .canvas-container {
+    margin-top: 50px;
+    height: 360px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+main .main-content .canvas-container canvas {
+    width: 480px;
+    height: 360px;
+    border: 1px solid grey
 }
