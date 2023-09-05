@@ -12,7 +12,7 @@ html {
 a {
     text-decoration: none;
     cursor: pointer;
-    color: black;
+    /* color: black; */
 }
 
 header {
