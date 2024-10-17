@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Mi primer post"
-tags: miscelánea
+tags: misc
 ---
 
 ## Un blog
