@@ -1,5 +1,6 @@
-_site
-.sass-cache
+# Jekyll Generated Files
+_site/
 .jekyll-cache
-.jekyll-metadata
-vendor
+
+# Mac
+.DS_Store
