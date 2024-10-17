@@ -26,12 +26,15 @@ header {
     background-color: #f5ecad;
     z-index: 2;
     border-bottom: 1px solid grey;
+    display: flex;
+    justify-content: flex-end;
 }
 
 header ul {
     display: flex;
     list-style: none;
     height: 100%;
+    padding-right: 15px;
 }
 
 header ul li {
