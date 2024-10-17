@@ -1,7 +1,7 @@
 build:
 	rm -rf site
 	mkdir site
-	cd blog && jekyll build --destination ../site/
+	cd blog && bundle exec jekyll build --destination ../site/
 	cp index.html style.css site/me/
 
 blog-serve:
