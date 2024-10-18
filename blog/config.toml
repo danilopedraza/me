@@ -1,4 +1,4 @@
-base_url = "https://cesarpedraza.com/blog/"
+base_url = "https://cesarpedraza.com/blog"
 compile_sass = true
 title = "Mi blog"
 description = "Solo divagaciones, nada más."
