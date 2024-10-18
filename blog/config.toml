@@ -1,0 +1,19 @@
+base_url = "https://cesarpedraza.com/blog/"
+compile_sass = true
+title = "Mi blog"
+description = "Solo divagaciones, nada más."
+# generate_feed = true
+
+taxonomies = [
+    # {name = "categories", feed = true},
+    {name = "tags", feed = true},
+]
+
+[extra]
+author = "César"
+after_dark_menu = [
+    {url = "$BASE_URL", name = "Inicio"},
+    # {url = "$BASE_URL/categories", name = "Categorías"},
+    {url = "$BASE_URL/tags", name = "Etiquetas"},
+]
+after_dark_title = "Cosas varias"
