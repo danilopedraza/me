@@ -3,7 +3,7 @@ title = "Agile, trabajo y alienación"
 date = 2024-10-25
 
 [taxonomies]
-tags = ["divagación"]
+tags = ["divagación", "agile", "software", "trabajo"]
 +++
 
 Ayer estaba conversando con mi hermano. Como es usual, me hablaba de su trabajo. Él es diseñador gráfico en una firma de publicidad, por lo que pertenece a un equipo, de muchos en la firma, al que se le asignan clientes a los que atiende. Todo lo que me decía me indica que tiene una relación íntima con el negocio del cliente. Piensa en términos de las necesidades de su cliente, y toma decisiones que lo afectan directamente. Negocia e interactúa con el cliente en lugar de adherirse a algún acuerdo preexistente, y su equipo está abierto a hacer todos los cambios que el cliente requiera.
