@@ -47,6 +47,7 @@ main {
 
 main .main-content {
     width: 800px;
+    height: calc(100% - 50px - 30px);
     padding: 20px 20px;
     border-left: 1px solid grey;
     border-right: 1px solid grey;
