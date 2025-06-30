@@ -33,7 +33,6 @@ header {
 header ul {
     display: flex;
     list-style: none;
-    height: 100%;
     padding-right: 15px;
 }
 
@@ -44,8 +43,6 @@ header ul li {
 }
 
 main {
-    width: 100%;
-    height: calc(100vh - 50px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,7 +52,6 @@ main {
 
 main .main-content {
     width: 800px;
-    height: 100%;
     padding: 20px 20px;
     border-left: 1px solid grey;
     border-right: 1px solid grey;
