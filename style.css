@@ -9,6 +9,12 @@ html {
     font-family: Helvetica, Arial, sans-serif;
 }
 
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 a {
     text-decoration: none;
     cursor: pointer;
@@ -36,6 +42,7 @@ header ul li {
 }
 
 main {
+    flex: 1;
     display: flex;
     justify-content: center;
     font-size: 1.6rem;
