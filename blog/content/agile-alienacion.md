@@ -22,7 +22,7 @@ El trabajo es un proceso en el que las personas modificamos nuestro entorno con 
 
 **2. La ALIENACIOoooOoOOóN**
 
-Marx (Carlitos) describe la alienación del trabajo como la destrucción de la necesidad inherente al ser humano de trabajar (es por definición LA forma de alcanzar sus deseos). Esto sucede porque el trabajo es convertido en un medio para la supervivencia, y no un fin en si mismo que genera satisfacción. Al leer esto uno podría pensar que se está siendo ingenuo, pues todo trabajo podría verse como una necesidad. El señor de barba señala que hay una característica fundamental y propia del trabajo *alienador*: el trabajador no se queda con los frutos.
+Marx describe la alienación del trabajo como la transformación del mismo de una actividad libre y controlada por la persona que trabaja, en una forzada y controlada por quien posee los medios para que el trabajo pueda hacerse. El trabajo es convertido en un medio para la supervivencia, y no un fin en si mismo que genera satisfacción. Al leer esto uno podría pensar que se está siendo ingenuo, pues todo trabajo podría verse como una necesidad. Marx señala que hay una característica fundamental y propia del trabajo *alienador*: se hace por coerción social, más que por una necesidad "natural".
 
 **3. Agile**
 
