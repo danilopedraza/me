@@ -1,7 +1,7 @@
 base_url = "/blog"
 compile_sass = true
-title = "Mi blog"
-description = "Solo divagaciones, nada más."
+title = "Cesar's blog"
+description = "Aquí escribo las cosas que quiero plasmar de manera más coherente que mis ideas, que no suelen ser muy claras."
 # generate_feed = true
 
 taxonomies = [
@@ -16,4 +16,4 @@ after_dark_menu = [
     # {url = "$BASE_URL/categories", name = "Categorías"},
     {url = "$BASE_URL/tags", name = "Etiquetas"},
 ]
-after_dark_title = "Cosas varias"
+after_dark_title = "El blog de César / César's blog"
