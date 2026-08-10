@@ -1,9 +1,10 @@
 "use strict";
 
 // ---------------------------------------------------------------------------
-// Basic 3D menu in raw WebGL: two extruded buttons ("About me", "Contact")
-// with mouse-ray picking, hover animation and a subtle parallax effect.
-// No dependencies.
+// Basic 3D menu in raw WebGL: a sphere on the left side of the screen and
+// two extruded buttons ("About me", "Contact") hovering to its right, one
+// over the other, with mouse-ray picking, hover animation and a subtle
+// parallax effect. No dependencies.
 // ---------------------------------------------------------------------------
 
 const canvas = document.getElementById("glcanvas");
@@ -244,6 +245,31 @@ function buildQuad() {
     return new Float32Array(verts.flat());
 }
 
+// UV sphere with unit diameter, centered at the origin.
+function buildSphere(latBands, longBands) {
+    const vert = (lat, lon) => {
+        const theta = (lat / latBands) * Math.PI;
+        const phi = (lon / longBands) * 2 * Math.PI;
+        const x = Math.sin(theta) * Math.cos(phi);
+        const y = Math.cos(theta);
+        const z = Math.sin(theta) * Math.sin(phi);
+        // Position (radius 0.5), normal, UV.
+        return [x * 0.5, y * 0.5, z * 0.5, x, y, z, lon / longBands, 1 - lat / latBands];
+    };
+
+    const data = [];
+    for (let lat = 0; lat < latBands; lat++) {
+        for (let lon = 0; lon < longBands; lon++) {
+            const a = vert(lat, lon);
+            const b = vert(lat + 1, lon);
+            const c = vert(lat + 1, lon + 1);
+            const d = vert(lat, lon + 1);
+            data.push(...a, ...b, ...c, ...a, ...c, ...d);
+        }
+    }
+    return new Float32Array(data);
+}
+
 function makeBuffer(data) {
     const buf = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buf);
@@ -253,6 +279,7 @@ function makeBuffer(data) {
 
 const cubeMesh = makeBuffer(buildCube());
 const quadMesh = makeBuffer(buildQuad());
+const sphereMesh = makeBuffer(buildSphere(32, 48));
 
 function bindMesh(mesh) {
     const STRIDE = 8 * 4;
@@ -293,11 +320,30 @@ function makeLabelTexture(text) {
 
 const BUTTON_SIZE = [2.6, 0.8, 0.3]; // width, height, depth
 
+// Sphere on the left side of the screen. The buttons hover over its right
+// side, one over the other.
+const sphere = {
+    position: [-2.4, 0, 0],
+    radius: 1.7,
+    color: [0.35, 0.2, 0.5],
+    model: mat4.identity(),
+};
+
+function buttonPosition(button_number) {
+    const angle = (3 * Math.PI / 8) + (button_number * (3 * Math.PI / 24));
+    const extended_radius = sphere.radius + 1.8;
+    return [
+        sphere.position[0] + Math.sin(angle) * extended_radius,
+        sphere.position[1] + Math.cos(angle) * extended_radius,
+        0.0,
+    ];
+}
+
 const buttons = [
     {
         label: "About me",
         href: "../",
-        position: [0, 0.55, 0],
+        position: buttonPosition(0),
         color: [0.16, 0.32, 0.55],
         texture: makeLabelTexture("About me"),
         scale: 1,
@@ -308,7 +354,7 @@ const buttons = [
     {
         label: "Contact",
         href: "mailto:cpedraza@unal.edu.co",
-        position: [0, -0.55, 0],
+        position: buttonPosition(1),
         color: [0.16, 0.45, 0.35],
         texture: makeLabelTexture("Contact"),
         scale: 1,
@@ -323,7 +369,7 @@ const camera = {
     near: 0.1,
     far: 100,
     // Simple camera at +Z looking at the origin.
-    view: mat4.translation(0, 0, -6),
+    view: mat4.translation(0, 0, -8),
 };
 
 let proj = mat4.identity();
@@ -409,6 +455,12 @@ function updateModels(time) {
     const leanX = mouse.inside ? -mouse.ny * 0.2 : 0;
     const parent = mat4.multiply(mat4.rotationY(leanY), mat4.rotationX(leanX));
 
+    // Sphere: slow spin plus the same parallax lean as the buttons.
+    const spin = mat4.rotationY(time * 0.0003);
+    const sphereT = mat4.translation(...sphere.position);
+    const sphereS = mat4.scaling(sphere.radius * 2, sphere.radius * 2, sphere.radius * 2);
+    sphere.model = mat4.multiply(parent, mat4.multiply(sphereT, mat4.multiply(spin, sphereS)));
+
     for (const button of buttons) {
         button.scale += (button.targetScale - button.scale) * 0.15;
 
@@ -432,10 +484,18 @@ function draw() {
     gl.uniformMatrix4fv(uniforms.view, false, camera.view);
     gl.uniform1i(uniforms.texture, 0);
 
-    // Opaque button bodies.
-    bindMesh(cubeMesh);
     gl.disable(gl.BLEND);
     gl.uniform1f(uniforms.useTexture, 0);
+
+    // Sphere body.
+    bindMesh(sphereMesh);
+    gl.uniformMatrix4fv(uniforms.model, false, sphere.model);
+    gl.uniform3fv(uniforms.color, sphere.color);
+    gl.uniform1f(uniforms.highlight, 0);
+    gl.drawArrays(gl.TRIANGLES, 0, sphereMesh.vertexCount);
+
+    // Opaque button bodies.
+    bindMesh(cubeMesh);
     for (const button of buttons) {
         gl.uniformMatrix4fv(uniforms.model, false, button.model);
         gl.uniform3fv(uniforms.color, button.color);
