@@ -5,7 +5,7 @@ build:
 	mkdir -p ./site/en/
 	cp ./en/index.html site/en/
 	mkdir -p ./site/menu
-	cp -r ./menu site/menu
+	cp -r ./menu site
 
 serve:
 	cd blog && zola serve
